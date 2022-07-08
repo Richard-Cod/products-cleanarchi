@@ -16,7 +16,7 @@ export const getProductRouter = (addProductUseCase : IAddProductUseCase ,
 
     
     router.post('/', async function(req : Request, res : Response) {
-            const product : Product = {price: 2,name:"name",description:"description"}
+            const product : Product = req.body
             const result = await addProductUseCase.execute(product)
             res.status(201).send({success: result , product});
     });

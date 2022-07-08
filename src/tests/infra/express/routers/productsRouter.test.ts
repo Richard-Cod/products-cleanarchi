@@ -1,9 +1,9 @@
-import { getProductRouter } from './../../infrastructure/express/routers/productsRouter';
-import { IAddProductUseCase } from './../../domain/interfaces/usecases/IAddProductUseCase';
-import { IListProductsUseCase } from './../../domain/interfaces/usecases/IListProductsUseCase';
+import { getProductRouter } from '../../../../infrastructure/express/routers/productsRouter';
+import { IAddProductUseCase } from '../../../../domain/interfaces/usecases/IAddProductUseCase';
+import { IListProductsUseCase } from '../../../../domain/interfaces/usecases/IListProductsUseCase';
 import request from "supertest";
-import server from "../../infrastructure/express/server";
-import { Product } from '../../domain/entities/Product';
+import server from "../../../../infrastructure/express/server";
+import { Product } from '../../../../domain/entities/Product';
 
 class MockListProductsUseCase implements IListProductsUseCase {
     execute(): Promise<Product[]> {
@@ -65,13 +65,15 @@ describe("Products Router", () => {
         test("POST /contact", async () => {
             const InputData = {
                 "price": 2,
-                "name": "name",
+                "name": "namess",
                 "description": "description"
             }
             jest.spyOn(mockAddProductsUseCase, "execute").mockImplementation(() => Promise.resolve(true))
             const response = await request(server).post("/contact").send(InputData)
             expect(response.status).toBe(201)
             expect(response.body.success).toBe(true)
+            expect(response.body.product).toStrictEqual(InputData)
+
         });
 
         // test("POST /contact returns 500 on use case error", async () => {
