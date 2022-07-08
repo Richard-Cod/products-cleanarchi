@@ -2,7 +2,7 @@ import { Product } from '../entities/Product';
 import { IProductRepository } from './../interfaces/repositories/IProductRepository';
 import { IAddProductUseCase } from './../interfaces/usecases/IAddProductUseCase';
 
-class AddProductUseCase implements IAddProductUseCase{
+export class AddProductUseCase implements IAddProductUseCase{
     productRepository : IProductRepository
 
     constructor(repository : IProductRepository){

@@ -2,7 +2,7 @@ import { Product } from '../entities/Product';
 import { IProductRepository } from './../interfaces/repositories/IProductRepository';
 
 
-class InMemoryProductRepository implements IProductRepository {
+export class InMemoryProductRepository implements IProductRepository {
     products : Product[]
 
     public constructor(){

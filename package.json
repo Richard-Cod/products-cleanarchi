@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:build": "tsc", 
+    "express:dev": "nodemon -e js -w lib lib/main.js",
     "test": "jest --watchAll --collectCoverage"
   },
   "keywords": [],
