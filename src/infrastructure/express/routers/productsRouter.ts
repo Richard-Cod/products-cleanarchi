@@ -1,4 +1,4 @@
-import { AddProductUseCase } from './../../../domain/usecases/AddProductUseCase';
+import { IListProductsUseCase } from './../../../domain/interfaces/usecases/IListProductsUseCase';
 import { IAddProductUseCase } from './../../../domain/interfaces/usecases/IAddProductUseCase';
 import { Product } from './../../../domain/entities/Product';
 import { Request, Response } from "express";
@@ -6,14 +6,18 @@ import { Request, Response } from "express";
 const express = require('express');
 const router = express.Router();
 
-// UseCase
+export const getProductRouter = (addProductUseCase : IAddProductUseCase ,
+     listProductsUseCase : IListProductsUseCase) => {
 
-export const getProductRouter = (addProductUseCase : IAddProductUseCase) => {
-
-    // define the home page route
-    router.get('/', function(req : Request, res : Response) {
+    router.get('/', async function(req : Request, res : Response) {
     
-        res.send('products');
+        try {
+            const products = await listProductsUseCase.execute()
+            res.send(products);
+        } catch (error) {
+            res.status(500).send("something went wrong")
+            
+        }
     });
 
     
@@ -26,7 +30,7 @@ export const getProductRouter = (addProductUseCase : IAddProductUseCase) => {
             res.status(200).send({success: result , product});
             
         } catch (error) {
-            
+            res.status(500).send("something went wrong")
         }
     });
 

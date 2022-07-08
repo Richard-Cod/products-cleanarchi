@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:build": "tsc", 
-    "express:dev": "nodemon -e js -w lib lib/main.js",
+    "express:dev": "nodemon src/infrastructure/express/index.ts",
     "test": "jest --watchAll --collectCoverage"
   },
   "keywords": [],
