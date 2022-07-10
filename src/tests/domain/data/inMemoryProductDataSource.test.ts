@@ -11,7 +11,6 @@ describe("InMemory DataSource", () => {
 
     test("get ", async () => {
         const ds = new InMemoryProductDataSource();
-
         const p = {
             "price": 2,
             "name": "name",
@@ -34,7 +33,6 @@ describe("InMemory DataSource", () => {
         }
 
         const result = await ds.create(p);
-
         expect(result).toStrictEqual(true)
     })
 
